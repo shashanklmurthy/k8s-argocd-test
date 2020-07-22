@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test1
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: test
+  source:
+    repoURL: 'https://github.com/shashanklmurthy/k8s-argocd-test.git'
+    path: dep1
+    targetRevision: HEAD
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: argo-test
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
