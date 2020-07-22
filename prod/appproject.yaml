@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: prod
+  namespace: argocd
+spec:
+  description: Testing monorepo
+  destinations:
+  - namespace: argo-test
+    server: https://kubernetes.default.svc
+  sourceRepos:
+  - '*'
+  syncWindows:
+    - kind: allow
+      schedule: '* 4 * * *'
+      duration: 3h
+      manualSync: true
+      namespaces:
+       - default
+    - kind: deny
+      schedule: '* 11 * * 1-5'
+      duration: 2h
+      namespaces:
+       - default
+    - kind: allow
+      schedule: '30 13 * * *'
+      duration: 2h
+      namespaces:
+        - default
