@@ -18,3 +18,5 @@ spec:
         image: paulbouwer/hello-kubernetes:1.4
         ports:
         - containerPort: 8080
+        env:
+          hello: world
