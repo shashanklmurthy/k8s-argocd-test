@@ -18,3 +18,5 @@ spec:
         image: paulbouwer/hello-kubernetes:1.7
         ports:
         - containerPort: 8080
+        env:
+          how: areYou
